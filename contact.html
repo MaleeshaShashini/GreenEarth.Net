@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <title>Contact Us</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Contact Us</h1>
+      <nav>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section style="background-color: rgb(174, 236, 172);">
+        <h1>We are here to help you!</h1>
+        <h3>
+          Let us know how we can best serve you.Use the contact form to email us
+          or select from the topics in FAQs that best fit your needs.
+        </h3>
+      </section>
+      <div class="left4">
+        <div id="app">
+          <div class="content">
+              <h1>Comment / Feedback Forum</h1>
+              <p>If you want give us feedback fill the forem bottem of the page.</p>
+          </div>
+  
+          <div class="form-container" v-show="showForm">
+              <form @submit.prevent="submitForm">
+                  <input type="text" v-model="formData.name" placeholder="Name">
+                  <input type="email" v-model="formData.email" placeholder="Email">
+                  <input type="text" v-model="formData.feedback" placeholder="Feedback">
+                  <button type="submit">Submit</button>
+              </form>
+          </div>
+  
+          <div v-if="submittedData.length > 0" class="submitted-data">
+              <h2>Submitted Data:</h2>
+             
+                <p v-for="(data, index) in submittedData" :key="index">{{ data.name }} - {{ data.email }} - {{ data.feedback }}</p>
+             
+          </div>
+        </div>
+      </div>
+
+      <div >
+        <section class="left5">
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d632.1465336327823!2d79.93047102349365!3d7.0692580147451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2fa0284c553bd%3A0xcf213b30ea772c2!2sBollatha%20West%2C%20Ja-Ela!5e0!3m2!1sen!2slk!4v1714485160860!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>         
+            <div class="contact">
+              <h4 >011-1231231 / 011-1231232</h4>
+              <h4 >No:15, Bollath West, Ganemulla </h4>
+              <h4> emsalmeida@gmail.com</h4>
+            </div>
+          </div>
+
+          
+            
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                showForm: true,
+                formData: {
+                    name: '',
+                    email: '',
+                    feedback: ''
+                },
+                submittedData: []
+            },
+            methods: {
+                submitForm() {
+                    this.submittedData.push({
+                        name: this.formData.name,
+                        email: this.formData.email,
+                        feedback: this.formData.feedback
+                    });
+                    this.formData.name = '';
+                    this.formData.email = '';
+                    this.formData.feedback ='';
+                },
+                toggleClass() {
+                    this.showForm = !this.showForm;
+                }
+            }
+        });
+    </script>
+
+    
+  </body>
+</html>
